@@ -68,3 +68,15 @@ func listTasks() {
 		fmt.Printf("ID: %d | %s | %s\n", tasks[i].ID, tasks[i].Description, tasks[i].Status)
 	}
 }
+
+func deleteTask(id int) error {
+	tasks := loadTasks()
+	for i, task := range tasks {
+		if task.ID == id {
+			tasks = append(tasks[:i], tasks[i+1:]...)
+			saveTasks(tasks)
+			return nil
+		}
+	}
+	return errors.New("Not found task")
+}

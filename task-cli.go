@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"strconv"
 )
 
 func main() {
@@ -20,7 +21,14 @@ func main() {
 			}
 			fmt.Println("Task added successfully")
 		case "delete":
-			fmt.Println("delete")
+			change, err := strconv.Atoi(os.Args[2])
+			if err != nil {
+				log.Fatal("error: string int")
+			}
+			err = deleteTask(change)
+			if err != nil {
+				log.Fatal(err)
+			}
 		case "update":
 			fmt.Println("update")
 		case "list":
