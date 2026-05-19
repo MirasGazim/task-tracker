@@ -14,7 +14,11 @@ func main() {
 		command := os.Args[1]
 		switch command {
 		case "add":
-			fmt.Println("add")
+			err := AddTask(os.Args[2])
+			if err != nil {
+				log.Fatal(err)
+			}
+			fmt.Println("Task added successfully")
 		case "delete":
 			fmt.Println("delete")
 		case "update":
@@ -29,5 +33,8 @@ func main() {
 			fmt.Println("unknown command")
 		}
 	}
+
+	tasks := loadTasks()
+	fmt.Println(tasks[2])
 
 }
