@@ -80,3 +80,17 @@ func deleteTask(id int) error {
 	}
 	return errors.New("Not found task")
 }
+
+func updateTask(id int, description string) error {
+	tasks := loadTasks()
+	for i, task := range tasks {
+		if task.ID == id {
+			tasks[i].Description = description
+			tasks[i].UpdatedAt = time.Now()
+			saveTasks(tasks)
+			return nil
+		}
+	}
+	return errors.New("not found task to update")
+
+}

@@ -29,8 +29,17 @@ func main() {
 			if err != nil {
 				log.Fatal(err)
 			}
+			fmt.Println("Task deleted successfully")
 		case "update":
-			fmt.Println("update")
+			id, err := strconv.Atoi(os.Args[2])
+			if err != nil {
+				log.Fatal("error: invalid id")
+			}
+			err = updateTask(id, os.Args[3])
+			if err != nil {
+				log.Fatal(err)
+			}
+			fmt.Println("Task updated successfully")
 		case "list":
 			listTasks()
 		case "mark-done":
