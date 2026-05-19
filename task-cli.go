@@ -41,7 +41,11 @@ func main() {
 			}
 			fmt.Println("Task updated successfully")
 		case "list":
-			listTasks()
+			filter := ""
+			if len(os.Args) > 2 {
+				filter = os.Args[2]
+			}
+			listTasks(filter)
 		case "mark-done":
 			id, err := strconv.Atoi(os.Args[2])
 			if err != nil {

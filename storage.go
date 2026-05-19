@@ -58,14 +58,12 @@ func AddTask(description string) error {
 	return nil
 }
 
-func listTasks() {
+func listTasks(filter string) {
 	tasks := loadTasks()
-	if len(tasks) == 0 {
-		fmt.Println("No tasks found")
-		return
-	}
-	for i := range tasks {
-		fmt.Printf("ID: %d | %s | %s\n", tasks[i].ID, tasks[i].Description, tasks[i].Status)
+	for _, task := range tasks {
+		if filter == "" || task.Status == filter {
+			fmt.Printf("ID: %d | %s | %s\n", task.ID, task.Description, task.Status)
+		}
 	}
 }
 
