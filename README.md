@@ -3,7 +3,7 @@
 A simple command line tool to manage your tasks.
 
 ## Project URL
-[https://github.com/MirasGazim/task-tracker](https://github.com/MirasGazim/task-tracker)
+Sample solution for the [task-tracker](https://roadmap.sh/projects/task-tracker) challenge from [roadmap.sh](https://roadmap.sh/).
 
 
 ## Installation
