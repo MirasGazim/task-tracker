@@ -2,6 +2,9 @@
 
 A simple command line tool to manage your tasks.
 
+## Project URL
+https://github.com/твойюзернейм/task-tracker
+
 ## Installation
 
 git clone https://github.com/юзернейм/task-tracker.git
