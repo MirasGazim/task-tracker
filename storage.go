@@ -9,6 +9,9 @@ import (
 	"time"
 )
 
+// loadTasks reads tasks from Tasks.json and returns a slice of Task.
+// If the file does not exist, it returns an empty slice.
+
 func loadTasks() []Task {
 
 	data, err := os.ReadFile("Tasks.json")
@@ -23,17 +26,22 @@ func loadTasks() []Task {
 	return tasks
 }
 
+// saveTasks takes a slice of Task and writes it to tasks.json.
+// Returns an error if marshaling or writing fails.
+
 func saveTasks(tasks []Task) error {
 	data, err := json.Marshal(tasks)
 	if err != nil {
 		return errors.New("can not marshall tasks")
 	}
-	err = os.WriteFile("tasks.json", data, 0644)
+	err = os.WriteFile("Tasks.json", data, 0644)
 	if err != nil {
 		return errors.New("can not write on file")
 	}
 	return nil
 }
+
+// this function add task to Tasks.json
 
 func AddTask(description string) error {
 	tasks := loadTasks()
@@ -58,6 +66,10 @@ func AddTask(description string) error {
 	return nil
 }
 
+// listTasks prints all tasks to the terminal.
+// You can also filter tasks by status: "todo", "done", "in-progress".
+// If filter is empty, all tasks are printed.
+
 func listTasks(filter string) {
 	tasks := loadTasks()
 	for _, task := range tasks {
@@ -66,6 +78,9 @@ func listTasks(filter string) {
 		}
 	}
 }
+
+// deleteTask removes the task with the given ID from tasks.json.
+// Returns an error if the task is not found.
 
 func deleteTask(id int) error {
 	tasks := loadTasks()
@@ -79,6 +94,9 @@ func deleteTask(id int) error {
 	return errors.New("Not found task")
 }
 
+// updateTask updates the description of the task with the given ID.
+// Returns an error if the task is not found.
+
 func updateTask(id int, description string) error {
 	tasks := loadTasks()
 	for i, task := range tasks {
@@ -91,6 +109,9 @@ func updateTask(id int, description string) error {
 	}
 	return errors.New("not found task to update")
 }
+
+// markDone sets the status of the task with the given ID to "done".
+// Returns an error if the task is not found or already marked as done.
 
 func markDone(id int) error {
 	tasks := loadTasks()
@@ -108,6 +129,9 @@ func markDone(id int) error {
 	}
 	return errors.New("didn't find task")
 }
+
+// markInProgress sets the status of the task with the given ID to "in-progress".
+// Returns an error if the task is not found or already marked as in-progress.
 
 func markInProgress(id int) error {
 	tasks := loadTasks()
