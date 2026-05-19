@@ -92,5 +92,38 @@ func updateTask(id int, description string) error {
 		}
 	}
 	return errors.New("not found task to update")
+}
 
+func markDone(id int) error {
+	tasks := loadTasks()
+	for i, task := range tasks {
+		if task.ID == id {
+			if tasks[i].Status == "done" {
+				return errors.New("status already mark-done")
+			} else {
+				tasks[i].Status = "done"
+				tasks[i].UpdatedAt = time.Now()
+				saveTasks(tasks)
+				return nil
+			}
+		}
+	}
+	return errors.New("didn't find task")
+}
+
+func markInProgress(id int) error {
+	tasks := loadTasks()
+	for i, task := range tasks {
+		if task.ID == id {
+			if tasks[i].Status == "in-progress" {
+				return errors.New("status already in-progress")
+			} else {
+				tasks[i].Status = "in-progress"
+				tasks[i].UpdatedAt = time.Now()
+				saveTasks(tasks)
+				return nil
+			}
+		}
+	}
+	return errors.New("didn't find task")
 }

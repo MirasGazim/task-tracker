@@ -43,9 +43,26 @@ func main() {
 		case "list":
 			listTasks()
 		case "mark-done":
-			fmt.Println("mark-done")
+			id, err := strconv.Atoi(os.Args[2])
+			if err != nil {
+				log.Fatal("error: invalid id")
+			}
+			err = markDone(id)
+			if err != nil {
+				log.Fatal(err)
+			}
+			fmt.Println("Task marked as done")
+
 		case "mark-in-progress":
-			fmt.Println("mark-in-progress")
+			id, err := strconv.Atoi(os.Args[2])
+			if err != nil {
+				log.Fatal("error: invalid id")
+			}
+			err = markInProgress(id)
+			if err != nil {
+				log.Fatal(err)
+			}
+			fmt.Println("Task marked as in-progress")
 		default:
 			fmt.Println("unknown command")
 		}
