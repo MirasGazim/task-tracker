@@ -7,7 +7,7 @@ https://github.com/MirasGazim/task-tracker
 
 ## Installation
 
-git clone https://github.com/юзернейм/task-tracker.git
+git clone https://github.com/MirasGazim/task-tracker.git
 cd task-tracker
 go build -o task-cli .
 
