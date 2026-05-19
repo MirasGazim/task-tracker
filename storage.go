@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"errors"
+	"fmt"
 	"log"
 	"os"
 	"time"
@@ -55,4 +56,15 @@ func AddTask(description string) error {
 		return err
 	}
 	return nil
+}
+
+func listTasks() {
+	tasks := loadTasks()
+	if len(tasks) == 0 {
+		fmt.Println("No tasks found")
+		return
+	}
+	for i := range tasks {
+		fmt.Printf("ID: %d | %s | %s\n", tasks[i].ID, tasks[i].Description, tasks[i].Status)
+	}
 }

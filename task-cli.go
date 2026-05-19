@@ -24,7 +24,7 @@ func main() {
 		case "update":
 			fmt.Println("update")
 		case "list":
-			fmt.Println("list")
+			listTasks()
 		case "mark-done":
 			fmt.Println("mark-done")
 		case "mark-in-progress":
@@ -33,8 +33,4 @@ func main() {
 			fmt.Println("unknown command")
 		}
 	}
-
-	tasks := loadTasks()
-	fmt.Println(tasks[2])
-
 }
